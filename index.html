@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Curso Inteligencia Artificial 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<style>
+    /* ===== Reset y configuración base ===== */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    :root {
+        --azul-oscuro: #0d1b4c;
+        --azul-medio: #26418f;
+        --morado: #6a4c9c;
+        --amarillo-postit: #fff3a3;
+        --amarillo-postit-borde: #e8d95e;
+        --gris-claro: #f4f5fb;
+        --blanco: #ffffff;
+        --verde-whatsapp: #25d366;
+        --sombra: rgba(13, 27, 76, 0.18);
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Nunito Sans', Calibri, sans-serif;
+        line-height: 1.6;
+        color: var(--azul-oscuro);
+        background-color: var(--gris-claro);
+        font-size: 16px;
+    }
+
+    h1, h2, h3 {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* ===== Header ===== */
+    header {
+        background: linear-gradient(135deg, var(--azul-medio) 0%, var(--morado) 100%);
+        padding: 2rem 1rem;
+        text-align: center;
+        box-shadow: 0 4px 10px var(--sombra);
+    }
+
+    header h1 {
+        color: var(--blanco);
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    /* ===== Main container ===== */
+    main {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+
+    /* ===== Cartel de introducción (estilo aviso/letrero) ===== */
+    #sectIntroduccion {
+        margin-bottom: 1.5rem;
+    }
+
+    #sectIntroduccion article {
+        background: var(--blanco);
+        border-left: 8px solid var(--morado);
+        border-radius: 4px 14px 14px 4px;
+        padding: 1.5rem 1.25rem;
+        box-shadow: 0 6px 16px var(--sombra);
+        position: relative;
+    }
+
+    #sectIntroduccion article::before {
+        content: "\F5F2";
+        font-family: "bootstrap-icons";
+        position: absolute;
+        top: -14px;
+        left: -14px;
+        background: var(--morado);
+        color: var(--blanco);
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        box-shadow: 0 3px 6px var(--sombra);
+    }
+
+    #sectIntroduccion p {
+        font-size: 1rem;
+        line-height: 1.8;
+        text-align: left;
+        color: var(--azul-oscuro);
+    }
+
+    #verMas {
+        display: none;
+    }
+
+    /* ===== Tablero de cada semana ===== */
+    .tipoTaller {
+        background: var(--blanco);
+        border-radius: 14px;
+        padding: 1.5rem 1rem;
+        margin: 12px 0;
+        box-shadow: 0 8px 20px var(--sombra);
+        border-top: 6px solid var(--azul-medio);
+    }
+
+    .tipoTaller h2 {
+        font-size: 1.15rem;
+        color: var(--azul-oscuro);
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.6rem;
+        border-bottom: 2px dashed #d7dcf0;
+    }
+
+    .tipoTaller > p {
+        background: var(--gris-claro);
+        border-radius: 10px;
+        padding: 1rem;
+        font-weight: 600;
+        text-align: center;
+        color: var(--azul-medio);
+    }
+
+    ul li {
+        list-style: none;
+    }
+
+    /* Contenedor de post-its dentro de cada tablero */
+    .tipoTaller > :not(h2):not(p) {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    /* ===== Post-it de cada sesión ===== */
+    .datosTaller {
+        background: var(--amarillo-postit);
+        border: 1px solid var(--amarillo-postit-borde);
+        border-radius: 4px;
+        padding: 1.25rem 1.1rem 1rem;
+        box-shadow: 4px 6px 10px rgba(0, 0, 0, 0.15);
+        position: relative;
+        transform: rotate(-1deg);
+    }
+
+    .datosTaller:nth-of-type(even) {
+        transform: rotate(1deg);
+    }
+
+    .datosTaller::before {
+        content: "\F5A0";
+        font-family: "bootstrap-icons";
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%) rotate(0deg);
+        color: #c0392b;
+        font-size: 1.3rem;
+        text-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+    }
+
+    .datosTaller h3 {
+        color: var(--azul-oscuro);
+        font-size: 1.05rem;
+        margin-bottom: 0.9rem;
+        font-weight: 700;
+    }
+
+    .datosTaller ul {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .datosTaller ul li a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        justify-content: center;
+        background: var(--azul-oscuro);
+        color: var(--blanco);
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 0.6rem 0.75rem;
+        border-radius: 8px;
+        transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .datosTaller ul li a:hover {
+        background: var(--azul-medio);
+        transform: translateY(-2px);
+    }
+
+    .datosTaller ul li a.disabled {
+        pointer-events: none;
+        text-decoration: none;
+        background: #4a5578;
+        color: #f4f5fb;
+        opacity: 1;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+        background: var(--azul-oscuro);
+        color: var(--blanco);
+        padding: 2rem 1rem;
+        text-align: center;
+        margin-top: 2.5rem;
+    }
+
+    footer .docente {
+        margin-bottom: 1.25rem;
+        line-height: 1.8;
+        font-weight: 600;
+    }
+
+    .contacto-titulo {
+        font-size: 0.95rem;
+        opacity: 0.85;
+        margin-bottom: 1rem;
+    }
+
+    .contacto-botones {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .btn-contacto {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--blanco);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        transition: transform 0.15s ease, filter 0.15s ease;
+    }
+
+    .btn-contacto:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.08);
+    }
+
+    .btn-contacto i {
+        font-size: 1.2rem;
+    }
+
+    .btn-correo {
+        background: var(--morado);
+    }
+
+    .btn-whatsapp {
+        background: var(--verde-whatsapp);
+    }
+
+    .btn-llamada {
+        background: var(--azul-medio);
+    }
+
+    /* Texto plano del teléfono (solo tablet/PC) */
+    .telefono-texto {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        opacity: 0.9;
+    }
+
+    footer h6 {
+        font-size: 0.8rem;
+        opacity: 0.7;
+        margin-top: 1.5rem;
+        font-weight: 400;
+    }
+
+    /* ===== TABLET (>= 768px) ===== */
+    @media (min-width: 768px) {
+        header h1 {
+            font-size: 2.2rem;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        #sectIntroduccion article {
+            padding: 2rem;
+        }
+
+        #sectIntroduccion p {
+            font-size: 1.1rem;
+        }
+
+        main {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            align-items: start;
+        }
+
+        #sectIntroduccion {
+            grid-column: 1 / -1;
+            margin-bottom: 0;
+        }
+
+        .tipoTaller {
+            margin: 0;
+            padding: 1.75rem;
+        }
+
+        .tipoTaller h2 {
+            font-size: 1.3rem;
+        }
+
+        .tipoTaller > :not(h2):not(p) {
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .datosTaller {
+            flex: 1 1 calc(50% - 10px);
+            min-width: 200px;
+        }
+
+        .datosTaller h3 {
+            font-size: 1.1rem;
+        }
+
+        /* En tablet y PC, el número de teléfono se muestra solo como texto */
+        .btn-llamada {
+            display: none;
+        }
+
+        .telefono-texto {
+            display: flex;
+        }
+
+        .contacto-botones {
+            flex-direction: row;
+            max-width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-contacto {
+            width: auto;
+            padding: 0.75rem 1.5rem;
+        }
+    }
+
+    /* ===== LAPTOP / PC (>= 1024px) ===== */
+    @media (min-width: 1024px) {
+        header {
+            padding: 3rem 2rem;
+        }
+
+        header h1 {
+            font-size: 2.6rem;
+        }
+
+        main {
+            grid-template-columns: repeat(4, 1fr);
+            padding: 3rem;
+            gap: 22px;
+        }
+
+        #sectIntroduccion p {
+            font-size: 1.15rem;
+            line-height: 2;
+        }
+
+        .tipoTaller h2 {
+            font-size: 1.4rem;
+        }
+
+        .tipoTaller > :not(h2):not(p) {
+            flex-direction: column;
+        }
+
+        .datosTaller {
+            flex: none;
+        }
+
+        footer {
+            padding: 3rem 2rem;
+        }
+    }
+
+    /* ===== Accesibilidad ===== */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+
+    button:focus,
+    a:focus {
+        outline: 3px solid #ffd166;
+        outline-offset: 2px;
+    }
+</style>
+<script>
+    let semanas = [{id: "S1", dato: "Semana 1", fecha: "2026-09-05"},
+    {id: "S2", dato: "Semana 2", fecha: "2026-09-12"},
+    {id: "S3", dato: "Semana 3", fecha: "2026-09-19"},
+    {id: "S4", dato: "Semana 4", fecha: "2026-09-26"}];
+
+    let datosSesiones = [{id: "S1", sesion: "s1", titulo: "Sesión 1", descripcion: "Fundamentos de IA.", audio: "https://drive.google.com/file/d/1LE1qbIlKCufBwiyDs5p0oQ1accqp5Tyn/view", pdf: "https://drive.google.com/file/d/1CeC4uug_jLicLCLCIdwcJE5iNhxWup25/view", actividad: "https://drive.google.com/file/d/1Dya2k9wai41dgmXsiD3fqCEXmzzANpmN/view"},
+    {id: "S1", sesion: "s2", titulo: "Sesión 2", descripcion: "Arquitectura de IA.", audio: "https://drive.google.com/file/d/1QmGCCs5W0umz4l3-tPZeFzncWz8bSDYm/view", pdf: "https://drive.google.com/file/d/1x0h7CWx3Nr02H7I26YuhAVLvPtKpt-eh/view", actividad: "https://drive.google.com/file/d/1QaaP2EOOt3DGUFIbFWjwygjiHJ2lX2vq/view"},
+    {id: "S2", sesion: "s3", titulo: "Sesión 3", descripcion: "", audio: "", pdf: "", actividad: ""},
+    {id: "S2", sesion: "s4", titulo: "Sesión 4", descripcion: "", audio: "", pdf: "", actividad: ""},
+    {id: "S3", sesion: "s5", titulo: "Sesión 5", descripcion: "", audio: "", pdf: "", actividad: ""},
+    {id: "S3", sesion: "s6", titulo: "Sesión 6", descripcion: "", audio: "", pdf: "", actividad: ""},
+    {id: "s4", sesion: "s7", titulo: "Sesión 7", descripcion: "", audio: "", pdf: "", actividad: ""},
+    {id: "S4", sesion: "s8", titulo: "Sesión 8", descripcion: "", audio: "", pdf: "", actividad: ""}];
+
+    function formatearFechaLarga(fechaStr) {
+        const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "setiembre", "octubre", "noviembre", "diciembre"];
+        const partes = fechaStr.split("-");
+        const anio = partes[0];
+        const mes = parseInt(partes[1], 10) - 1;
+        const dia = partes[2];
+        return dia + " " + meses[mes] + " " + anio;
+    }
+
+    function sesionesIA() {
+        for (let semana = 0; semana < semanas.length; semana++) {
+            document.write("<section id='sect" + semanas[semana].id + "' class='tipoTaller'>");
+            document.write("<h2>" + semanas[semana].dato + ": " + formatearFechaLarga(semanas[semana].fecha) + "</h2>");
+            const fechaHoy = new Date();
+            const fechaInicio = new Date(semanas[semana].fecha);
+            if (fechaHoy - fechaInicio > 6 * 24 * 60 * 60 * 1000) {
+                document.write("<p>Finalizado.</p>");
+            } else if (fechaHoy - fechaInicio <= 0) {
+                document.write("<p>Por iniciar.</p>");
+            } else {
+                for (let sesion = 0; sesion < datosSesiones.length; sesion++) {
+                    if (semanas[semana].id == datosSesiones[sesion].id) {
+                        document.write("<article class='datosTaller'>");
+                        document.write("<h3>" + datosSesiones[sesion].titulo + ": " + datosSesiones[sesion].descripcion + "</h3>");
+                        document.write("<ul><li><a href='" + datosSesiones[sesion].audio + "' class='" + datosSesiones[sesion].sesion + "' target='_blank' role='button' naria-label='Ir a descargar Audio " + datosSesiones[sesion].descripcion + "'><i class='bi bi-mic-fill' aria-hidden='true'></i> Descargar Audio</a></li><li><a href='" + datosSesiones[sesion].pdf + "' class='" + datosSesiones[sesion].sesion + "' target='_blank' role='button' aria-label='Acceder a descargar PDF " + datosSesiones[sesion].descripcion + "'><i class='bi bi-file-earmark-pdf-fill' aria-hidden='true'></i> Descargar PDF</a></li><li><a href='" + datosSesiones[sesion].actividad + "' class='" + datosSesiones[sesion].sesion + "' target='_blank' role='button' aria-label='Entrar a descargar Actividad " + datosSesiones[sesion].descripcion + "'><i class='bi bi-clipboard2-check-fill' aria-hidden='true'></i> Descargar Actividad</a></li></ul>");
+                        document.write("</article>");
+                    }
+                }
+            }
+            document.write("</section>");
+        }
+    }
+</script>
+</head>
+<body>
+    <header>
+        <h1>Curso: Inteligencia Artificial (IA)</h1>
+    </header>
+    <main>
+        <section id="sectIntroduccion">
+            <article>
+                <p>Bienvenidos al taller para dominar la IA desde cero, aquí encontrarán cada sesión que se realizará por semana.<br>
+                Recuerda que cada sesión se habilita en la semana que le corresponde y se deshabilita pasado la fecha.</p>
+            </article>
+        </section>
+        <script>
+            sesionesIA();
+        </script>
+    </main>
+    <footer>
+        <article>
+            <p class="contacto-titulo">¿Tienes dudas o consultas? Escríbenos:</p>
+            <div class="contacto-botones">
+                <a class="btn-contacto btn-correo"
+                   href="mailto:desarrollatec.pe@gmail.com?subject=Consulta%20sobre%20el%20Curso%20de%20IA&body=Hola%2C%20tengo%20la%20siguiente%20consulta%20sobre%20el%20curso%3A%20"
+                   target="_blank" role="button" aria-label="Enviar consulta por correo electrónico">
+                    <i class="bi bi-envelope-fill" aria-hidden="true"></i> Escríbenos un correo
+                </a>
+                <a class="btn-contacto btn-whatsapp"
+                   href="https://wa.me/51992891965?text=Hola%2C%20quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20Curso%20de%20Inteligencia%20Artificial"
+                   target="_blank" role="button" aria-label="Enviar mensaje por WhatsApp">
+                    <i class="bi bi-whatsapp" aria-hidden="true"></i> Escríbenos por WhatsApp
+                </a>
+                <a class="btn-contacto btn-llamada" href="tel:+51992891965" role="button" aria-label="Llamar por teléfono">
+                    <i class="bi bi-telephone-fill" aria-hidden="true"></i> Llámanos: +51 992 891 965
+                </a>
+                <p class="telefono-texto"><i class="bi bi-telephone-fill" aria-hidden="true"></i> +51 992 891 965</p>
+            </div>
+            <h6>Docente: Ing. Brajean Méndiz Flores - 2026</h6>
+        </article>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        const sesiones = [{id: "s1", inicio: new Date("2026-09-05T09:00:00"), fin: new Date("2026-09-11T23:59:59")}, {id: "s2", inicio: new Date("2026-09-05T09:00:00"), fin: new Date("2026-09-11T23:59:59")}, {id: "s3", inicio: new Date("2026-09-12T09:00:00"), fin: new Date("2026-09-18T23:59:59")},
+        {id: "s4", inicio: new Date("2026-09-12T09:00:00"), fin: new Date("2026-09-18T23:59:59")}, {id: "s5", inicio: new Date("2026-09-19T09:00:00"), fin: new Date("2026-09-25T23:59:59")}, {id: "s6", inicio: new Date("2026-09-19T09:00:00"), fin: new Date("2026-09-25T23:59:59")},
+        {id: "s7", inicio: new Date("2026-09-26T09:00:00"), fin: new Date("2026-09-27T23:59:59")}, {id: "s8", inicio: new Date("2026-09-26T09:00:00"), fin: new Date("2026-09-27T23:59:59")}];
+
+        function actualizarEstadoSesiones() {
+            const ahora = new Date();
+
+            sesiones.forEach(sesion => {
+                const enlaces = document.getElementsByClassName(sesion.id);
+
+                for (let i = 0; i < enlaces.length; i++) {
+                    const enlace = enlaces[i];
+                    if (ahora >= sesion.inicio && ahora <= sesion.fin) {
+                        enlace.classList.remove("disabled");
+                        enlace.setAttribute("aria-disabled", "false");
+                        enlace.setAttribute("tabindex", "0");
+                    } else {
+                        enlace.classList.add("disabled");
+                        enlace.setAttribute("aria-disabled", "true");
+                        enlace.setAttribute("tabindex", "-1");
+                    }
+                }
+            });
+        }
+
+        actualizarEstadoSesiones();
+        setInterval(actualizarEstadoSesiones, 60000);
+    </script>
+</body>
+</html>
